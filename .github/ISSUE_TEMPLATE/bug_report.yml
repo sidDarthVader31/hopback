@@ -1,0 +1,27 @@
+name: Bug report
+description: Something else is wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: And what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a chat on …
+        2. Press …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Site, browser and HopBack version
+      placeholder: claude.ai, Chrome 142, HopBack 0.1.0
+    validations:
+      required: true

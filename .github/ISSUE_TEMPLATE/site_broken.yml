@@ -1,0 +1,40 @@
+name: A site broke
+description: HopBack stopped working (or works wrongly) on a supported site.
+labels: [site-broken]
+body:
+  - type: dropdown
+    id: site
+    attributes:
+      label: Which site?
+      options: [ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Copilot]
+    validations:
+      required: true
+  - type: dropdown
+    id: symptom
+    attributes:
+      label: What happens?
+      options:
+        - The button never appears
+        - The count or list is wrong
+        - Clicking a question lands in the wrong place
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What you did and what you saw. Please don't paste private chat content.
+    validations:
+      required: true
+  - type: textarea
+    id: markup
+    attributes:
+      label: Markup around one of your messages (optional, very helpful)
+      description: In DevTools, right-click one of your own messages → Inspect → copy the outer HTML of the element wrapping it. Replace the message text with "hello".
+      render: html
+  - type: input
+    id: version
+    attributes:
+      label: Browser and HopBack version
+      placeholder: Chrome 142, HopBack 0.1.0
