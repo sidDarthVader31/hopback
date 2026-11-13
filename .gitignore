@@ -3,4 +3,5 @@ dist/
 test-results/
 playwright-report/
 *.zip
+release/
 .DS_Store

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HopBack: Jump to Your Questions in AI Chats",
   "short_name": "HopBack",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Hop back to any question you asked in ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok and Copilot. No data leaves your browser.",
   "icons": {
     "16": "icons/icon-16.png",

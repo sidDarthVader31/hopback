@@ -1,6 +1,6 @@
 {
   "name": "hopback",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Hop back to any question you asked in ChatGPT, Claude, Gemini and other AI chats.",
   "license": "MIT",
   "private": true,
@@ -13,8 +13,10 @@
     "test": "vitest run",
     "e2e": "npm run build && playwright test",
     "icons": "node scripts/make-icons.mjs",
-    "media": "npm run build && playwright test -c playwright.media.config.ts",
-    "check": "npm run typecheck && npm run lint && npm test && npm run e2e"
+    "media": "npm run build && playwright test -c playwright.media.config.ts capture",
+    "check": "npm run typecheck && npm run lint && npm test && npm run e2e",
+    "zip": "npm run build && node scripts/zip.mjs",
+    "store-assets": "npm run build && playwright test -c playwright.media.config.ts store"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",

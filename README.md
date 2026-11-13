@@ -137,7 +137,7 @@ On a Mac, <kbd>Alt</kbd> is <kbd>Option</kbd>.
 
 ## Privacy
 
-HopBack collects nothing, stores nothing about your chats, and makes no network requests.
+The full policy is in [PRIVACY.md](PRIVACY.md). In short: HopBack collects nothing, stores nothing about your chats, and makes no network requests.
 
 - Your questions are read from the page when you look at the list and are never saved or sent anywhere.
 - The only thing kept is where you dragged the button to (one number, in your browser's local extension storage).
@@ -168,6 +168,8 @@ npm test            # unit tests (Vitest + happy-dom)
 npm run e2e         # browser tests: real Chromium with the built extension loaded
 npm run check       # typecheck, lint, unit and browser tests
 npm run media       # regenerate README screenshots and GIFs
+npm run store-assets  # regenerate Chrome Web Store screenshots and promo images
+npm run zip         # build and package release/hopback-<version>.zip for the Web Store
 ```
 
 The browser tests serve stand-in pages at the real hostnames, so the manifest's match patterns and the content script are exercised exactly as shipped, with no accounts or network needed.

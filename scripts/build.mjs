@@ -40,7 +40,7 @@ const options = {
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(path.join(root, 'manifest.json'), path.join(dist, 'manifest.json'));
-await cp(path.join(root, 'icons'), path.join(dist, 'icons'), { recursive: true });
+await cp(path.join(root, 'icons'), path.join(dist, 'icons'), { recursive: true, filter: (src) => !src.endsWith('.svg') });
 
 if (watch) {
   const ctx = await context(options);
