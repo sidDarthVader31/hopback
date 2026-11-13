@@ -99,7 +99,7 @@ Light or dark, HopBack matches the page it is on rather than your system setting
 
 | Site | Address | Status |
 | --- | --- | --- |
-| ChatGPT | `chatgpt.com` | Selectors checked on the live site (Nov 2026) |
+| ChatGPT | `chatgpt.com` | Selectors checked on the live site, signed in and out (Nov 2026) |
 | Gemini | `gemini.google.com` | Selectors checked on the live site (Nov 2026) |
 | Perplexity | `www.perplexity.ai` | Selectors checked on the live site (Nov 2026) |
 | Grok | `grok.com` | Selectors checked on the live site (Nov 2026) |

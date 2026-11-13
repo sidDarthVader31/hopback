@@ -5,10 +5,19 @@ export const adapters: SiteAdapter[] = [
     id: 'chatgpt',
     name: 'ChatGPT',
     hosts: ['chatgpt.com', 'chat.openai.com'],
-    // Checked live 2026-11: transcript is <ol data-conversation-transcript> of <li data-message-role>.
-    // The older data-message-author-role markup is kept as a fallback.
-    selectors: ['[data-message-role="user"]', '[data-message-author-role="user"]', 'article[data-turn="user"]'],
+    // Checked live 2026-11. The signed-in and signed-out apps are built differently; the one
+    // thing they share is the bubble around the user's text, so that comes first.
+    // Signed out: <li data-message-role="user">. Signed in: <div data-chatgpt-search-unit-key="…:user">.
+    // The older data-message-author-role markup is kept as a last fallback.
+    selectors: [
+      '[data-user-message-bubble]',
+      '[data-message-role="user"]',
+      '[data-chatgpt-search-unit-key$=":user"]',
+      '[data-message-author-role="user"]',
+      'article[data-turn="user"]',
+    ],
     textSelector: '[data-user-message-bubble]',
+    ignore: '[data-conversation-role], .sr-only',
     headerOffset: 64,
   },
   {

@@ -54,6 +54,16 @@ describe('findQuestionElements', () => {
     expect(found.map((el) => el.textContent)).toEqual(['Old markup gone']);
   });
 
+  it('reads the signed-in ChatGPT markup', () => {
+    document.body.innerHTML =
+      '<div data-turn-key="t1"><h4 data-conversation-role="user">You said:</h4>' +
+      '<div data-chatgpt-search-unit-key="fallback-turn-0:0:user"><div data-user-message-bubble="true">Signed in question</div></div>' +
+      '<h4 data-conversation-role="assistant">ChatGPT said:</h4>' +
+      '<div data-chatgpt-search-unit-key="fallback-turn-0:1:assistant"><div data-markdown-text-style="assistant-message">Answer</div></div></div>';
+    const found = findQuestionElements(document, chatgpt);
+    expect(found.map((el) => questionText(el, chatgpt))).toEqual(['Signed in question']);
+  });
+
   it('still reads the previous ChatGPT markup', () => {
     document.body.innerHTML = '<article data-turn="user"><div data-message-author-role="user"><div class="whitespace-pre-wrap">Older layout</div></div></article>';
     const found = findQuestionElements(document, chatgpt);
