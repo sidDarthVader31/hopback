@@ -32,6 +32,13 @@ describe('questionText', () => {
     expect(questionText(el('<div class="file"></div>'), chatgpt)).toBe('Attachment');
   });
 
+  it('drops screen-reader labels without touching the page', () => {
+    const grok = adapterFor('grok.com')!;
+    const bubble = el('<h2 class="sr-only">You</h2><p>Hello</p>');
+    expect(questionText(bubble, grok)).toBe('Hello');
+    expect(bubble.querySelector('.sr-only')).not.toBeNull();
+  });
+
   it('reads only the text node the adapter points at', () => {
     expect(questionText(el('<span>You said</span><div class="query-text">Hello</div>'), gemini)).toBe('Hello');
   });
@@ -87,6 +94,19 @@ describe('theme detection', () => {
     expect(isDarkColor('rgb(255, 255, 255)')).toBe(false);
     expect(isDarkColor('rgb(33, 33, 33)')).toBe(true);
     expect(isDarkColor('rgba(0, 0, 0, 0)')).toBeNull();
+  });
+
+  it('understands the other colour formats browsers report', () => {
+    // Seen live: ChatGPT reports oklch, Perplexity color(srgb …).
+    expect(isDarkColor('oklch(0.991069 0 none)')).toBe(false);
+    expect(isDarkColor('oklch(0.21 0.006 285)')).toBe(true);
+    expect(isDarkColor('oklch(21% 0.006 285)')).toBe(true);
+    expect(isDarkColor('color(srgb 0.984314 0.984314 0.984314)')).toBe(false);
+    expect(isDarkColor('color(srgb 0.1 0.1 0.12)')).toBe(true);
+    expect(isDarkColor('lab(98 0 0)')).toBe(false);
+    expect(isDarkColor('lab(12 0 0)')).toBe(true);
+    expect(isDarkColor('oklch(0.2 0 0 / 0)')).toBeNull();
+    expect(isDarkColor('transparent')).toBeNull();
   });
 });
 

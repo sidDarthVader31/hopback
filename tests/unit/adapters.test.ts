@@ -54,6 +54,12 @@ describe('findQuestionElements', () => {
     expect(found.map((el) => el.textContent)).toEqual(['Old markup gone']);
   });
 
+  it('still reads the previous ChatGPT markup', () => {
+    document.body.innerHTML = '<article data-turn="user"><div data-message-author-role="user"><div class="whitespace-pre-wrap">Older layout</div></div></article>';
+    const found = findQuestionElements(document, chatgpt);
+    expect(found.map((el) => questionText(el, chatgpt))).toEqual(['Older layout']);
+  });
+
   it('keeps only the outermost of nested matches', () => {
     const perplexity = adapterFor('www.perplexity.ai')!;
     document.body.innerHTML = '<div class="group/query"><h1 class="group/query">One</h1></div><div class="group/query">Two</div>';

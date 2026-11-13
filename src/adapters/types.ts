@@ -17,6 +17,8 @@ export interface SiteAdapter {
   selectors: string[];
   /** Optional selector, relative to a message element, for the node holding the text. */
   textSelector?: string;
+  /** Selector for screen-reader labels and other nodes inside a message that are not part of what the user typed. */
+  ignore?: string;
   /** Height in px of the site's sticky header, so a hop doesn't land underneath it. */
   headerOffset?: number;
   /** Identifies the open conversation. Defaults to the URL path. */

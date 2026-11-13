@@ -21,7 +21,8 @@
         "https://www.perplexity.ai/*",
         "https://chat.deepseek.com/*",
         "https://grok.com/*",
-        "https://copilot.microsoft.com/*"
+        "https://copilot.microsoft.com/*",
+        "https://copilot.com/*"
       ],
       "js": ["content.js"],
       "run_at": "document_idle"

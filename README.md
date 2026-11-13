@@ -13,7 +13,7 @@ and takes you straight to it. One click, or no clicks at all.
 [![License: MIT](https://img.shields.io/badge/license-MIT-5b5bd6.svg)](LICENSE)
 ![Manifest V3](https://img.shields.io/badge/manifest-v3-5b5bd6.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-5b5bd6.svg)
-![Bundle size](https://img.shields.io/badge/bundle-16%20KB-5b5bd6.svg)
+![Bundle size](https://img.shields.io/badge/bundle-17%20KB-5b5bd6.svg)
 ![No data collected](https://img.shields.io/badge/data%20collected-none-2e9e6b.svg)
 
 <br>
@@ -99,15 +99,15 @@ Light or dark, HopBack matches the page it is on rather than your system setting
 
 | Site | Address | Status |
 | --- | --- | --- |
-| ChatGPT | `chatgpt.com` | Automated tests pass; live check pending |
+| ChatGPT | `chatgpt.com` | Selectors checked on the live site (Nov 2026) |
+| Gemini | `gemini.google.com` | Selectors checked on the live site (Nov 2026) |
+| Perplexity | `www.perplexity.ai` | Selectors checked on the live site (Nov 2026) |
+| Grok | `grok.com` | Selectors checked on the live site (Nov 2026) |
 | Claude | `claude.ai` | Automated tests pass; live check pending |
-| Gemini | `gemini.google.com` | Automated tests pass; live check pending |
-| Perplexity | `www.perplexity.ai` | Automated tests pass; live check pending |
 | DeepSeek | `chat.deepseek.com` | Automated tests pass; live check pending |
-| Grok | `grok.com` | Automated tests pass; live check pending |
-| Copilot | `copilot.microsoft.com` | Automated tests pass; live check pending |
+| Copilot | `copilot.com`, `copilot.microsoft.com` | Automated tests pass; live check pending |
 
-"Automated tests pass" means the extension works end to end on a stand-in page that copies the site's markup. These sites change their markup without notice, so "live check" is a manual pass on the real thing ([checklist](CONTRIBUTING.md#live-check)). If HopBack's button doesn't appear on a supported site, please [open a "site broke" issue](https://github.com/sidDarthVader31/hopback/issues/new?template=site_broken.yml).
+"Automated tests pass" means the extension works end to end on a stand-in page that copies the site's markup. "Selectors checked" means the markup HopBack looks for was confirmed on the real site, signed out. These sites change their markup without notice, so the full "live check" is a manual pass with the extension installed ([checklist](CONTRIBUTING.md#live-check)). If HopBack's button doesn't appear on a supported site, please [open a "site broke" issue](https://github.com/sidDarthVader31/hopback/issues/new?template=site_broken.yml).
 
 ## Install
 
@@ -142,7 +142,7 @@ HopBack collects nothing, stores nothing about your chats, and makes no network 
 - Your questions are read from the page when you look at the list and are never saved or sent anywhere.
 - The only thing kept is where you dragged the button to (one number, in your browser's local extension storage).
 - It runs only on the sites listed above. The one permission it asks for is `storage`, for that button position.
-- No analytics, no accounts, no remote code. The whole extension is one 16 KB script you can read in `dist/content.js`.
+- No analytics, no accounts, no remote code. The whole extension is one 17 KB script you can read in `dist/content.js`.
 
 ## How it works
 
@@ -188,7 +188,7 @@ Most sites need only an entry in [`src/adapters/index.ts`](src/adapters/index.ts
 
 ## Roadmap
 
-- [ ] Live verification of all seven sites
+- [ ] Live check of Claude, DeepSeek and Copilot (they need an account)
 - [ ] Chrome Web Store listing
 - [ ] Firefox build
 - [ ] Optional local history to search questions across chats

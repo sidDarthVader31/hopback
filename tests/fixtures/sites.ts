@@ -26,8 +26,8 @@ export interface SiteFixture {
 export const SITES: Record<string, SiteFixture> = {
   chatgpt: {
     origin: 'https://chatgpt.com',
-    user: '<article data-testid="conversation-turn-{{I}}" data-turn="user"><div data-message-author-role="user" data-message-id="u{{I}}"><div class="whitespace-pre-wrap">{{TEXT}}</div></div></article>',
-    assistant: '<article data-turn="assistant"><div data-message-author-role="assistant"><div class="markdown">{{HTML}}</div></div></article>',
+    user: '<li id="u{{I}}" data-message-role="user"><div data-submit-message-animation-target=""><div><div data-user-message-bubble=""><p data-user-message-copy="">{{TEXT}}</p></div></div></div></li>',
+    assistant: '<li id="a{{I}}" data-message-role="assistant"><div class="markdown">{{HTML}}</div></li>',
   },
   claude: {
     origin: 'https://claude.ai',
@@ -36,12 +36,12 @@ export const SITES: Record<string, SiteFixture> = {
   },
   gemini: {
     origin: 'https://gemini.google.com',
-    user: '<user-query><span class="cdk-visually-hidden">You said</span><div class="query-text"><p class="query-text-line">{{TEXT}}</p></div></user-query>',
+    user: '<user-query><span class="user-query-container"><user-query-content class="user-query-container"><div class="user-query-container"><div class="query-content" id="user-query-content-{{I}}"><span class="user-query-bubble-with-background"><div class="query-text" dir="ltr"><h5 class="cdk-visually-hidden screen-reader-user-query-label">You said {{TEXT}}</h5><p class="query-text-line">{{TEXT}}</p></div></span></div></div></user-query-content></span></user-query>',
     assistant: '<model-response><message-content>{{HTML}}</message-content></model-response>',
   },
   perplexity: {
     origin: 'https://www.perplexity.ai',
-    user: '<div class="group/query relative"><h1 class="group/query font-display">{{TEXT}}</h1></div>',
+    user: '<div class="group/user-bubble flex min-w-0 justify-end"><div data-message-bubble="right" class="min-w-0 whitespace-pre-wrap"><div data-renderer="lm"><p class="my-2">{{TEXT}}</p></div></div></div>',
     assistant: '<div class="prose">{{HTML}}</div>',
   },
   deepseek: {
@@ -51,8 +51,8 @@ export const SITES: Record<string, SiteFixture> = {
   },
   grok: {
     origin: 'https://grok.com',
-    user: '<div id="response-u{{I}}" class="relative group flex flex-col w-full items-end"><div class="message-bubble">{{TEXT}}</div></div>',
-    assistant: '<div id="response-a{{I}}" class="relative group flex flex-col w-full items-start"><div class="message-bubble">{{HTML}}</div></div>',
+    user: '<div class="relative group flex flex-col justify-center w-full items-end"><div dir="auto" role="article" data-testid="user-message" class="message-bubble"><h2 class="sr-only" id="l{{I}}">You</h2><p class="py-2">{{TEXT}}</p></div></div>',
+    assistant: '<div class="relative group flex flex-col justify-center w-full items-start"><div class="message-bubble">{{HTML}}</div></div>',
   },
   copilot: {
     origin: 'https://copilot.microsoft.com',
@@ -125,12 +125,13 @@ const PAGE_CSS = `
   .dark header { border-color: rgba(255,255,255,.06); }
   main { flex: 1; overflow-y: auto; }
   #thread { max-width: 720px; margin: 0 auto; padding: 24px 24px 40px; }
+  ol, li { list-style: none; margin: 0; padding: 0; }
   .row-user { display: flex; justify-content: flex-end; margin: 28px 0 14px; }
   .row-user > * { display: block; max-width: 80%; padding: 10px 16px; border-radius: 20px; background: #f0f0f2; }
   .dark .row-user > * { background: #2b2b31; }
   .row-user * { margin: 0; font: inherit; }
   .row-assistant p { margin: 0 0 16px; }
-  .cdk-visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .cdk-visually-hidden, .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
   .composer { flex: none; max-width: 720px; width: calc(100% - 48px); margin: 0 auto 20px; padding: 14px 18px; border-radius: 24px; background: #f0f0f2; opacity: .8; font-size: 15px; }
   .dark .composer { background: #2b2b31; }
   .welcome { padding: 20vh 0; text-align: center; font-size: 26px; font-weight: 600; opacity: .7; }
