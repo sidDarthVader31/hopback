@@ -10,6 +10,17 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
+  "homepage_url": "https://github.com/sidDarthVader31/hopback",
+  "action": {
+    "default_title": "HopBack: show your questions (Alt+J)",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "permissions": ["storage"],
   "content_scripts": [
     {

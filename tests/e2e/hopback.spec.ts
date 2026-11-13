@@ -118,6 +118,22 @@ test.describe('interactions', () => {
     await expect(items.first().locator('.num')).toHaveText('1');
   });
 
+  test('the toolbar icon opens and closes the list', async ({ page, extension }) => {
+    const { panel } = ui(page);
+    const worker = extension.serviceWorkers()[0] ?? (await extension.waitForEvent('serviceworker'));
+    const clickIcon = () =>
+      worker.evaluate(async () => {
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        // @ts-expect-error dispatch is how Chromium fires extension events in tests
+        chrome.action.onClicked.dispatch(tab);
+      });
+    await page.bringToFront();
+    await clickIcon();
+    await expect(panel).toBeVisible();
+    await clickIcon();
+    await expect(panel).toBeHidden();
+  });
+
   test('closes when you click outside', async ({ page }) => {
     const { fab, panel } = ui(page);
     await fab.click();

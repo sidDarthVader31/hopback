@@ -26,8 +26,8 @@ const inlineCss = {
 };
 
 const options = {
-  entryPoints: [path.join(root, 'src/content.ts')],
-  outfile: path.join(dist, 'content.js'),
+  entryPoints: [path.join(root, 'src/content.ts'), path.join(root, 'src/background.ts')],
+  outdir: dist,
   bundle: true,
   format: 'iife',
   target: 'chrome110',
@@ -48,7 +48,7 @@ if (watch) {
   console.log('watching for changes…');
 } else {
   await build(options);
-  const { size } = await stat(options.outfile);
+  const { size } = await stat(path.join(dist, 'content.js'));
   console.log(`dist/content.js  ${(size / 1024).toFixed(1)} KB (budget ${BUDGET_BYTES / 1024} KB)`);
   if (size > BUDGET_BYTES) {
     console.error('Bundle is over the size budget.');

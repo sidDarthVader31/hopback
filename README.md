@@ -126,7 +126,7 @@ Then open `chrome://extensions`, turn on **Developer mode**, choose **Load unpac
 
 | Shortcut | What it does |
 | --- | --- |
-| <kbd>Alt</kbd> <kbd>J</kbd> | Open or close the question list |
+| <kbd>Alt</kbd> <kbd>J</kbd>, or the toolbar icon | Open or close the question list |
 | <kbd>↑</kbd> <kbd>↓</kbd> | Move through the list |
 | <kbd>Enter</kbd> | Hop to the selected question |
 | <kbd>Esc</kbd> | Close the list |
@@ -142,7 +142,7 @@ HopBack collects nothing, stores nothing about your chats, and makes no network 
 - Your questions are read from the page when you look at the list and are never saved or sent anywhere.
 - The only thing kept is where you dragged the button to (one number, in your browser's local extension storage).
 - It runs only on the sites listed above. The one permission it asks for is `storage`, for that button position.
-- No analytics, no accounts, no remote code. The whole extension is one 17 KB script you can read in `dist/content.js`.
+- No analytics, no accounts, no remote code. The whole extension is a 17 KB page script (`dist/content.js`) plus a five-line background script that passes toolbar clicks to it.
 
 ## How it works
 

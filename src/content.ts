@@ -82,6 +82,13 @@ function main(adapter: SiteAdapter): void {
     true,
   );
 
+  // Sent by the background worker when the toolbar icon is clicked.
+  if (typeof chrome !== 'undefined') {
+    chrome.runtime?.onMessage.addListener((message: { type?: string }) => {
+      if (message?.type === 'hopback:toggle') view.toggle();
+    });
+  }
+
   view.attach();
   tracker.start();
 }
